@@ -17,4 +17,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/location/update', [LocationController::class, 'store'])->name('location.store');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/map', [LocationController::class, 'dashboard'])->name('location.dashboard');
+    Route::get('/dashboard/map/data', [LocationController::class, 'liveData'])->name('location.data');
+});
 require __DIR__.'/auth.php';
